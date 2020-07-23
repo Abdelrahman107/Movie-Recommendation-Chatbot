@@ -1,0 +1,39 @@
+! version= 2.0
+> begin
++ request
+* <get met> == undefined => <set met=true>{topic=welcome}{ok}
+- {ok}
+< begin
+
+
+
+> topic welcome
++ *
+- Hi, please tell me your name!{topic=information}
+< topic
+
+ 
+
+> topic information
++ my name is *
+- <set name=<star>>Nice to meet you <get name>, what is your age!
++ my age is #
+- <set age=<star>> Okay!, <get age> Thanks,What movies do you like, Drama|horror|romance?{topic=movie}
+< topic
+
+
+> topic movie
++ *
+- <set genre=<star>>Here it is.<call>getMovies <get genre></call>  
+< topic
+
+> object getMovies python
+from function import getMovie
+getMovie(str(args[0]))
+< object
+
+
+
+
+
+
