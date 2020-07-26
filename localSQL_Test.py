@@ -1,6 +1,8 @@
 import mysql.connector
 
  
+ 
+ 
 def saveToDB(name,age):
   mydb = mysql.connector.connect(
   host="localhost",
@@ -17,5 +19,5 @@ def saveToDB(name,age):
 
 
   
-
-
+   
+     
