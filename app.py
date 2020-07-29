@@ -1,33 +1,27 @@
-from rivescript import RiveScript
-#from flask import Flask , request
-import requests
-global response
+from rivescript import RiveScript 
+from flask import Flask , request , render_template
+import requests 
+import bot
+from function import getMovie
 
 
-#app = Flask(__name__)
+app = Flask(__name__)
 
 
+@app.route("/")
+def index():
+    return render_template("index.html")
 
-
-bot = RiveScript()
-bot.load_directory("./brain")
-bot.sort_replies()
-
-
-
-
-while True:
-    msg = input('You> ')
-    if msg == 'quit':
-        quit()
-
-    reply = bot.reply("localuser", msg)
-    print('Bot>', reply)
-
-
-
-
+@app.route("/get")
+def chat():
+    request_data = request.args.get('msg')
+    if request_data == "Drama" or request_data == "Comedy" or request_data == "Horror" or request_data == "Thriller" or request_data == "Action" or request_data == "Children" or request_data == "Adventure" or request_data == "Animation"
+        movieToPrint = getMovie(request_data)
+        response = bot.chat(request_data)
+        return movieToPrint + "--->" + str(response)
+    else:
+        response = bot.chat(request_data)
+        return str(response)  
 
 if __name__ == "__main__":
     app.run(debug=True)
-    
