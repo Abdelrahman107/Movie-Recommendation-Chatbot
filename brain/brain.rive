@@ -15,25 +15,16 @@
  
 
 > topic information
-+ my name is *
-- <set name=<star>>Nice to meet you <get name>, what is your age!
++ my name is * 
+- <set name=<star1>>Nice to meet you <get name>, what is your age!
 + my age is #
-- <set age=<star>> Okay!, <get age> Thanks,What movies do you like, Drama|horror|romance?{topic=movie}
+- <set age=<star>> Okay!, <get age> Thanks,What movies do you like, Drama|Horror|Romance|Comedy ...etc?{topic=movie}
 < topic
 
 
 > topic movie
 + *
-- <set genre=<star>>Here it is.<call>getMovies <get genre></call>  
+- <set genre=<star>>Here are the list of Movies. 
 < topic
-
-> object getMovies python
-from function import getMovie
-getMovie(str(args[0]))
-< object
-
-
-
-
 
 
