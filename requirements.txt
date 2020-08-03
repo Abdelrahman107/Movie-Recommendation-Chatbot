@@ -29,7 +29,7 @@ python-dateutil==2.7.5
 python-dotenv==0.14.0
 python-telegram-bot==12.8
 pytz==2020.1
-PyYAML==3.13
+PyYAML==5.1
 regex==2020.7.14
 rivescript==1.15.0
 six==1.15.0
