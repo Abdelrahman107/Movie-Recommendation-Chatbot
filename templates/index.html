@@ -1,17 +1,112 @@
 <!DOCTYPE html>
 <html>
-<head>
- <title>Movie Recommendation ChatBot| FourBots</title>
- <meta name="viewport" content="width=device-width, initial-scale=1">
- <link rel="stylesheet" href="style.css">
+    <head>
+        <title>Movie-Recommendation Bot</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+       <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+        <style>
+        
+ * {
+    background-color: #333;
+    box-sizing: border-box; 
+    margin: 0;
+    padding: 0;
+    color: #f7c08a;
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
 
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+ }
+.header{
+    
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+    padding: 30px;
+    
+
+
+ }
+ .image{
+    margin-top: 20px;
+    width:200px;
+   
+ }
+ .description{
+     margin-top: 100px ;
+ }
+
+ body, html {
+ height: 100%;
+ margin: 0;
+ font-family: Arial;
+ }
+ 
+
+ #chatbox {
+ margin-left: auto;
+ margin-right: auto;
+ width: 40%;
+ margin-top: 60px;
+ }
+ #userInput {
+ margin-left: auto;
+ margin-right: auto;
+ width: 40%;
+ margin-top: 60px;
+ }
+ #textInput {
+ width: 90%;
+ border: none;
+ border-bottom: 3px solid #f7c08a;
+ font-family: monospace;
+ font-size: 17px;
+ }
+ .userText {
+ color: white;
+ font-family: monospace;
+ font-size: 17px;
+ text-align: right;
+ line-height: 30px;
+ }
+ .userText span {
+ background-color: #808080;
+ padding: 10px;
+ border-radius: 2px;
+ }
+ .botText {
+ color: white;
+ font-family: monospace;
+ font-size: 17px;
+ text-align: left;
+ line-height: 30px;
+ margin-top: 15px;
+ }
+ .botText span {
+ background-color: rgb(107, 97, 97);
+ padding: 10px;
+ border-radius: 2px;
+ }
+ #tidbit {
+ position: absolute;
+ bottom: 0;
+ right: 0;
+ width: 300px;
+ }
+ .boxed {
+ margin-left: auto;
+ margin-right: auto;
+ width: 100%;
+ margin-top: 60px;
+ 
+ }
+</style>
+</head>
  
 <body>
     <div class="header">
     <h1><b>Movie Recommendation ChatBot welcomes you !</b></h1>
     <h2 class="description"><b>We Recommend , You watch </b></h4>
-    <p><img class="image" src="images/movie.jpg" alt="Customer Bot"></p>
+    <p><img class="image" src="https://support.upwork.com/hc/article_attachments/360040474034/chatbot-data.png" alt="Customer Bot"></p>
     <div class="boxed">
         <div>
         <div id="chatbox">
@@ -21,7 +116,30 @@
             <input id="textInput" type="text" name="msg" placeholder="Message" />
         </div>
         </div>
-    </div>
-    </div>
-   </body>
-   </html>
+        <script>
+            function getBotResponse() {
+            var rawText = $("#textInput").val();
+            var userHtml = '<p class="userText"><span>' + rawText + "</span></p>";
+            $("#textInput").val("");
+            $("#chatbox").append(userHtml);
+            document
+            .getElementById("userInput")
+            .scrollIntoView({ block: "start", behavior: "smooth" });
+            $.get("/get", { msg: rawText }).done(function (data) {
+            var botHtml = '<p class="botText"><span>' + data + "</span></p>";
+            $("#chatbox").append(botHtml);
+            document
+            .getElementById("userInput")
+            .scrollIntoView({ block: "start", behavior: "smooth" });
+            });
+            }
+            $("#textInput").keypress(function (e) {
+            if (e.which == 13) {
+            getBotResponse();
+            }
+            });
+            </script>
+            </div>
+            </div>
+           </body>
+           </html>
