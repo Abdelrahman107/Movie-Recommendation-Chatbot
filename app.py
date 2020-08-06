@@ -10,6 +10,7 @@ app = Flask(__name__)
 
 @app.route("/")
 def index():
+    bot.bot.clear_uservars()
     return render_template("index.html")
 
 @app.route("/get")
